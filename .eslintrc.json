@@ -4,6 +4,7 @@
         "es2021": true
     },
     "extends": [
+        "prettier-standard/prettier-file",
         "plugin:react/recommended",
         "standard-with-typescript"
     ],
@@ -19,9 +20,7 @@
         "react"
     ],
     "rules": {
-        "indent": [
-            "warn",
-            4
-        ]
+        "space-before-function-paren": "off",
+        "@typescript-eslint/space-before-function-paren": "off"
     }
 }

@@ -4,7 +4,7 @@ import fetchData from 'utils/fetchData'
 import { type ICharacter } from 'types'
 
 function App(): ReactElement {
-  const [data, setData] = useState<ICharacter[]>()
+  const [data, setData] = useState<ICharacter[]>([])
 
   useEffect(() => {
     fetchData()
@@ -16,7 +16,7 @@ function App(): ReactElement {
       })
   }, [])
 
-  return <Home characters={data} />
+  return <>{data.length > 0 ? <Home characters={data} /> : <p>Loading</p>}</>
 }
 
 export default App

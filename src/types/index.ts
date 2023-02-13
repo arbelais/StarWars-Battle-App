@@ -21,3 +21,14 @@ export interface ICharacter {
   apprentices: string[]
   formerAffiliations?: string[]
 }
+
+export interface IVersusCharacter {
+  id: number
+  name: string
+  image: string
+}
+
+export interface IVersus {
+  ch1: IVersusCharacter
+  ch2: IVersusCharacter
+}

@@ -21,6 +21,9 @@
     ],
     "rules": {
         "space-before-function-paren": "off",
-        "@typescript-eslint/space-before-function-paren": "off"
+        "@typescript-eslint/space-before-function-paren": "off",
+        "no-unused-vars": "warn",
+        "@typescript-eslint/no-unused-vars": "warn",
+        "react/react-in-jsx-scope": "off"
     }
 }

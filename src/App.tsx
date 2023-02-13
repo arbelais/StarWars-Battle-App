@@ -1,13 +1,22 @@
-import { Cards } from 'components'
-import React, { type ReactElement } from 'react'
+import { useEffect, useState, type ReactElement } from 'react'
+import { Home } from 'components'
+import fetchData from 'utils/fetchData'
+import { type ICharacter } from 'types'
 
 function App(): ReactElement {
-  return (
-    <div className="w-full h-screen grid place-content-center">
-      <h1 className="text-6xl text-slate-200 font-bold">StarWars Battle App</h1>
-      <Cards />
-    </div>
-  )
+  const [data, setData] = useState<ICharacter[]>()
+
+  useEffect(() => {
+    fetchData()
+      .then((res) => {
+        setData(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  return <Home characters={data} />
 }
 
 export default App

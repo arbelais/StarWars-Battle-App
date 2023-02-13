@@ -1,12 +1,18 @@
-import React, { type ReactElement } from 'react'
+import { Layout, Cards } from 'components'
+import { useState, type ReactElement } from 'react'
+import { type ICharacter } from 'types'
 
-// type Props = {}
+interface Props {
+  characters: ICharacter[] | undefined
+}
 
-const Home = (): ReactElement => {
+const Home = ({ characters }: Props): ReactElement => {
+  const [versus, setVersus] = useState()
+
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Layout>
+      <Cards />
+    </Layout>
   )
 }
 

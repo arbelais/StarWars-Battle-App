@@ -26,6 +26,11 @@ export interface IVersusCharacter {
   id: number
   name: string
   image: string
+  height: number
+  mass: number
+  gender: string
+  homeworld: string
+  wiki: string
 }
 
 export interface IVersus {

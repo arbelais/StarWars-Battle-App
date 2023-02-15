@@ -1,21 +1,17 @@
 import { type ReactElement } from 'react'
+import { type IVersusCharacter } from 'types'
 
-interface Props {
-  image: string
-  name: string
-}
-
-const Card = ({ image, name }: Props): ReactElement => {
+const Card = ({ character }: { character: IVersusCharacter }): ReactElement => {
   return (
-    <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      {image.length > 0 ? (
-        <img className="rounded-t-lg" src={image} alt="character image" />
-      ) : (
-        <p>Select a character</p>
-      )}
+    <div className="max-w-sm w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <img
+        className="rounded-t-lg"
+        src={character.image}
+        alt="character image"
+      />
       <div className="p-5">
         <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {name}
+          {character.name}
         </h5>
       </div>
     </div>

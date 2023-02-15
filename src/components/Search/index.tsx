@@ -1,17 +1,24 @@
 import { useState, type ChangeEvent, type ReactElement } from 'react'
 import { type ICharacter } from 'types'
 
-const Search = ({ characters }: { characters: ICharacter[] }): ReactElement => {
+const Search = ({
+  characters,
+  translate
+}: {
+  characters: ICharacter[]
+  translate: string
+}): ReactElement => {
   const [results, setResults] = useState<ICharacter[]>([])
 
-  function handleSearch(e: ChangeEvent<HTMLInputElement>): ICharacter[] {
+  function handleSearch(e: ChangeEvent<HTMLInputElement>): void {
+    if (e.target.value.length < 1) {
+      setResults([])
+      return
+    }
     const filter = characters.filter((ch) =>
       ch.name.toLowerCase().match(e.target.value)
     )
-    console.log(filter)
     setResults(filter)
-
-    return filter
   }
 
   return (
@@ -34,7 +41,7 @@ const Search = ({ characters }: { characters: ICharacter[] }): ReactElement => {
         <input
           type="text"
           id="search-navbar"
-          className="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:-translate-y-28 focus:scale-150 focus:shadow-xxl transition-all"
+          className={`block pl-10 py-2.5 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:scale-150 focus:shadow-xxl transition-all ${translate}`}
           placeholder="Search..."
           onChange={handleSearch}
           onBlur={() => {
@@ -42,14 +49,14 @@ const Search = ({ characters }: { characters: ICharacter[] }): ReactElement => {
           }}
         />
         {results.length > 0 ? (
-          <div className="bg-blue-50 w-5/6 min-h-96 h-max max-h-96 px-16 py-10 overflow-y-scroll grid grid-cols-4 z-40">
+          <div className="border border-gray-200 dark:bg-gray-800 dark:border-gray-700 bg-blue-50 absolute rounded-xl shadow-2xl w-[90vw] min-h-96 h-max max-h-96 px-16 py-10 overflow-y-scroll grid grid-cols-4 z-40">
             {results.map((r) => {
               return (
-                <div
-                  className="border border-black text-blue-900 flex items-center justify-center"
+                <button
+                  className="border border-black font-normal text-gray-700 dark:text-gray-400 flex items-center justify-center"
                   key={r.id}>
                   {r.name}
-                </div>
+                </button>
               )
             })}
           </div>

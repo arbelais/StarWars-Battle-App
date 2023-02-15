@@ -33,7 +33,10 @@ const Home = ({ characters }: { characters: ICharacter[] }): ReactElement => {
           <div className="flex flex-col">
             <div className="flex flex-col items-center gap-1">
               <h2 className="text-xl">Please, choose your characters.</h2>
-              <Search characters={characters} />
+              <Search
+                characters={characters}
+                translate={'focus:-translate-y-28'}
+              />
               <button
                 type="button"
                 className="text-blue-300 hover:bg-blue-200 hover:bg-opacity-20 hover:text-blue-400 focus:ring-4 underline focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 mb-4 transition-all"

@@ -3,9 +3,9 @@ import { type IVersusCharacter } from 'types'
 
 const Card = ({ character }: { character: IVersusCharacter }): ReactElement => {
   return (
-    <div className="max-w-sm w-96 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <img
-        className="rounded-t-lg"
+        className="rounded-t-lg object-cover"
         src={character.image}
         alt="character image"
       />

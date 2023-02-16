@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactElement } from 'react'
 import { Home } from 'components'
 import fetchData from 'utils/fetchData'
 import { type ICharacter } from 'types'
+import './App.css'
 
 function App(): ReactElement {
   const [data, setData] = useState<ICharacter[]>([])

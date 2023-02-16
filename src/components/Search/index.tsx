@@ -1,15 +1,17 @@
 import { useState, type ChangeEvent, type ReactElement } from 'react'
-import { type ICharacter } from 'types'
+import { type IVersus, type ICharacter } from 'types'
 
 const Search = ({
   characters,
   translate,
   searchBox,
+  versus,
   setVersus
 }: {
   characters: ICharacter[]
   translate: string
   searchBox: string
+  versus: IVersus
   setVersus: (arg1: any) => void
 }): ReactElement => {
   const [results, setResults] = useState<ICharacter[]>([])
@@ -29,10 +31,18 @@ const Search = ({
     const findCharacter = characters.find((ch) => ch.id === Number(e.target.id))
 
     if (findCharacter !== undefined) {
-      setVersus({
-        ch1: findCharacter,
-        ch2: findCharacter
-      })
+      if (e.target.name === 'left') {
+        setVersus({
+          ...versus,
+          ch1: findCharacter
+        })
+      }
+      if (e.target.name === 'right') {
+        setVersus({
+          ...versus,
+          ch2: findCharacter
+        })
+      }
     }
 
     const searchBar = document.getElementById(
@@ -71,24 +81,33 @@ const Search = ({
         />
         {results.length > 0 ? (
           <div
-            className={`border border-gray-200 gap-2 dark:bg-gray-800 dark:border-gray-700 bg-blue-50 absolute rounded-xl shadow-2xl w-[80vw] h-[30vh] px-16 py-10 overflow-y-scroll grid grid-cols-4 z-40 ${searchBox}`}>
+            className={`border border-gray-200 gap-2 dark:bg-gray-800 dark:border-gray-700 bg-blue-50 absolute rounded-xl shadow-2xl w-[80vw] h-[40vh] px-16 py-10 overflow-y-scroll grid grid-cols-4 z-40 ${searchBox}`}>
             {results.map((r) => {
               return (
                 <div
                   key={r.id}
-                  className="h-24 flex flex-col items-center justify-center border py-2 border-gray-700 font-normal text-gray-700 dark:text-gray-400 text-center">
+                  className="relative group h-24 flex flex-col items-center justify-center gap-2 border py-2 border-gray-700 font-normal text-gray-700 dark:text-gray-400 text-center">
                   <button
+                    name="left"
                     onClick={handleSearchSelection}
-                    className=""
+                    className="absolute left-0 inset-y-0 w-2/4 opacity-0 group-hover:opacity-100 backdrop-blur-sm bg-white/20 transition-all"
                     id={String(r.id)}>
-                    <img
-                      id={String(r.id)}
-                      src={r.image}
-                      alt="character image"
-                      className="rounded-full w-10 h-10 object-cover"
-                    />{' '}
+                    Left
                   </button>
-                  {r.name}
+                  <button
+                    name="right"
+                    onClick={handleSearchSelection}
+                    className="absolute right-0 inset-y-0 w-2/4 opacity-0 group-hover:opacity-100 backdrop-blur-sm bg-white/20 transition-all"
+                    id={String(r.id)}>
+                    Right
+                  </button>
+                  <img
+                    id={String(r.id)}
+                    src={r.image}
+                    alt="character image"
+                    className="rounded-full w-10 h-10 object-cover"
+                  />
+                  <span className="text-sm">{r.name}</span>
                 </div>
               )
             })}

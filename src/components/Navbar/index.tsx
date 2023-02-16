@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react'
 import { type IVersus, type ICharacter } from 'types'
-import { Search, RandomButton } from 'components'
+import { Search, RandomButton, Reload } from 'components'
 import StarWarsLogo from 'assets/g239.png'
 
 const Navbar = ({
@@ -27,9 +27,16 @@ const Navbar = ({
                 characters={characters}
                 translate={'focus:translate-x-[30%]'}
                 searchBox={'top-20 translate-x-12'}
+                versus={versus}
                 setVersus={setVersus}
               />
-              <RandomButton characters={characters} setVersus={setVersus} />
+              <RandomButton
+                label={'Random Battle'}
+                characters={characters}
+                versus={versus}
+                setVersus={setVersus}
+              />
+              <Reload setVersus={setVersus} />
             </>
           ) : null}
         </div>

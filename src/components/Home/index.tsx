@@ -2,7 +2,7 @@ import { Cards, Navbar, Search, List, RandomButton } from 'components'
 import { useState, type ReactElement } from 'react'
 import { type IVersusCharacter, type ICharacter } from 'types'
 
-const initialVersusState = {
+export const initialVersusState = {
   id: 0,
   name: '',
   image: '',
@@ -29,13 +29,18 @@ const Home = ({ characters }: { characters: ICharacter[] }): ReactElement => {
       <Navbar characters={characters} versus={versus} setVersus={setVersus} />
       <main className="container bg-gray-900 w-full">
         {versus.ch1.id !== 0 || versus.ch2.id !== 0 ? (
-          <Cards versus={versus} />
+          <Cards
+            versus={versus}
+            characters={characters}
+            setVersus={setVersus}
+          />
         ) : (
           <div className="flex flex-col">
             <div className="flex flex-col items-center gap-1">
               <h2 className="text-xl">Please, choose your characters.</h2>
               <Search
                 setVersus={setVersus}
+                versus={versus}
                 characters={characters}
                 translate={'focus:-translate-y-28'}
                 searchBox={'top-8 -translate-x-4'}
@@ -51,7 +56,12 @@ const Home = ({ characters }: { characters: ICharacter[] }): ReactElement => {
             </div>
             <div className="flex flex-col items-center gap-2">
               <h2 className="text-xl">or generate a Random Battle.</h2>
-              <RandomButton characters={characters} setVersus={setVersus} />
+              <RandomButton
+                characters={characters}
+                versus={versus}
+                setVersus={setVersus}
+                label={'Random Battle'}
+              />
               {toggle ? (
                 <List characters={characters} setToggle={setToggle} />
               ) : null}

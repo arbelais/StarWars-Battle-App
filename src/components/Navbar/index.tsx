@@ -1,6 +1,7 @@
 import { type ReactElement } from 'react'
 import { type IVersus, type ICharacter } from 'types'
 import { Search, RandomButton } from 'components'
+import StarWarsLogo from 'assets/g239.png'
 
 const Navbar = ({
   characters,
@@ -13,9 +14,10 @@ const Navbar = ({
 }): ReactElement => {
   return (
     <nav className="bg-white border-gray-200 mb-5 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
-      <div className="container flex flex-col gap-8 flex-wrap items-center justify-center mx-auto">
+      <div className="container flex flex-col gap-2 flex-wrap items-center justify-center mx-auto">
+        <img src={StarWarsLogo} alt="starwars logo" className="w-48" />
         <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">
-          StarWars Battle App
+          Battle App
         </span>
 
         <div className="flex items-center justify-center gap-3">
@@ -24,6 +26,8 @@ const Navbar = ({
               <Search
                 characters={characters}
                 translate={'focus:translate-x-[30%]'}
+                searchBox={'top-20 translate-x-12'}
+                setVersus={setVersus}
               />
               <RandomButton characters={characters} setVersus={setVersus} />
             </>

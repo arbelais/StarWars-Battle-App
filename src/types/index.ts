@@ -29,6 +29,7 @@ export interface IVersusCharacter {
   height: number
   mass: number
   gender: string
+  cybernetics: string
   homeworld: string
   wiki: string
 }

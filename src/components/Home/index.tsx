@@ -8,6 +8,7 @@ const initialVersusState = {
   image: '',
   height: 0,
   mass: 0,
+  cybernetics: '',
   gender: '',
   homeworld: '',
   wiki: ''
@@ -34,8 +35,10 @@ const Home = ({ characters }: { characters: ICharacter[] }): ReactElement => {
             <div className="flex flex-col items-center gap-1">
               <h2 className="text-xl">Please, choose your characters.</h2>
               <Search
+                setVersus={setVersus}
                 characters={characters}
                 translate={'focus:-translate-y-28'}
+                searchBox={'top-8 -translate-x-4'}
               />
               <button
                 type="button"

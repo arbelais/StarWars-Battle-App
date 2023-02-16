@@ -15,6 +15,12 @@ const Card = ({ character }: { character: IVersusCharacter }): ReactElement => {
             <p className="capitalize">Gender: {character.gender}</p>
             <p className="capitalize">Mass: {character.mass}</p>
             <p className="capitalize">Height: {character.height}</p>
+            <p className="capitalize">
+              Cybernetics:{' '}
+              {character.cybernetics !== undefined
+                ? character.cybernetics
+                : 'None'}
+            </p>
             <p className="capitalize">Homeworld: {character.homeworld}</p>
             <a
               href={character.wiki}
